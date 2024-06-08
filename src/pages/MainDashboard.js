@@ -7,11 +7,20 @@ import SidePanel from '../components/SidePanel';
 const MainDashBoard = () => {
   return (
     <div className=' h-full'>
-      <NavBar/>
-    <NavbarDashboard/>
-    <SidePanel/>
-    <Footer/>
-  </div>
+      <NavBar />
+      <NavbarDashboard />
+
+      <section className='flex flex-row pb-10 pt-10 w-[80%] mx-auto'>
+        <div className='w-[30%]'>
+          <SidePanel />
+        </div>
+        <div className='w-[60%]'>
+          male female graph
+        </div>
+      </section>
+
+      <Footer />
+    </div>
   )
 }
 
