@@ -3,7 +3,7 @@ import React from 'react'
 const NavbarDashboard = () => {
     return (
         <>
-            <section className='flex w-[80%] mt-10 shadow-lg shadow-gray-700  rounded-lg mx-auto flex-row justify-between bg-white'>
+            <section className='flex w-[80%] shadow-lg shadow-gray-700  rounded-lg mx-auto flex-row justify-between bg-white'>
                 <h1 className=' mx-2 my-auto tracking-wide  items-center text-black text-2xl font-bold'>
                     Your Clinic Name
                   

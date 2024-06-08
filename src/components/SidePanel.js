@@ -18,7 +18,7 @@ const SidePanel = () => {
     };
 
     return (
-        <div className='flex flex-col px-10 shadow-lg pb-10 shadow-gray-700 rounded-xl  gap-3'>
+        <div className='flex flex-col px-10 shadow-lg pb-10 shadow-gray-700 rounded-xl bg-white gap-3'>
             <div className='pt-10 mb-5 pb-3 border-b-[2px] border-black px-10 mx-auto'>
                 <img className='h-[200px] w-[200px] mx-auto overflow-hidden rounded-full bg-[#017A884D]' alt='doctor' src='/doctor1.png' />
                 <p className='font-bold mt-10 text-2xl text-center'>Dr Zeena</p>
