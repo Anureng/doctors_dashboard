@@ -3,6 +3,7 @@ import NavBar from '../components/Navbar';
 import Footer from '../components/Footer';
 import NavbarDashboard from '../components/NavbarDashboard';
 import SidePanel from '../components/SidePanel';
+import { Outlet } from 'react-router-dom';
 
 const Security = () => {
   return (
@@ -15,7 +16,7 @@ const Security = () => {
         <SidePanel />
       </div>
       <div className='w-[60%]'>
-        male female graph
+       <Outlet/>
       </div>
     </section>
 
