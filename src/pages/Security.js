@@ -15,7 +15,7 @@ const Security = () => {
       <div className='w-[30%] hidden md:inline-flex'>
         <SidePanel />
       </div>
-      <div className='w-[60%]'>
+      <div className='md:w-[60%]'>
        <Outlet/>
       </div>
     </section>
