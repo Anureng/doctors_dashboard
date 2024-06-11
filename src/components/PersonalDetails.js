@@ -3,6 +3,7 @@ import NavBar from '../components/Navbar';
 import Footer from '../components/Footer';
 import NavbarDashboard from '../components/NavbarDashboard';
 import SidePanel from '../components/SidePanel';
+import SettingPersonal from './SettingPersonal';
 
 
 const PersonalDetails = () => {
@@ -11,12 +12,12 @@ const PersonalDetails = () => {
     <NavBar />
     <NavbarDashboard />
 
-    <section className='flex flex-row flex-grow pb-10 pt-10 w-[80%] mx-auto'>
-      <div className='w-[30%] hidden md:inline-flex'>
+    <section className='flex flex-row flex-grow w-full p-4   justify-evenly mx-auto'>
+      <div className=' hidden md:inline-flex'>
         <SidePanel />
       </div>
-      <div className='w-[60%]'>
-        male female graph
+      <div className='lg:w-2/5 w-full'>
+        <SettingPersonal/>
       </div>
     </section>
 

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainDashboard from './pages/MainDashboard';
 import AppointmentDashboard from './pages/AppointmentDashboard';
 import Security from "./pages/Security"
-import SettingsDashboard from './pages/SettingsDashboard';
 import FeesDashboard from './pages/FeesDashboard';
 import LoginPage from './pages/LoginPage';
 import SignUp from './pages/SignUp';
@@ -29,11 +28,11 @@ function App() {
             <Route path="delete-account" element={<DeleteAccount />} />
           </Route>
 
-          <Route path="/settings" element={<SettingsDashboard />}>
-            <Route path="personal-details" element={<PersonalDetails />} />
-            <Route path="education" element={<Education />} />
-            <Route path="location" element={<Location />} />
-          </Route>
+          
+            <Route path="/settings/personal-details" element={<PersonalDetails />} />
+            <Route path="/settings/education" element={<Education />} />
+            <Route path="/settings/location" element={<Location />} />
+          
           <Route path="/fees" element={<FeesDashboard />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp />} />
