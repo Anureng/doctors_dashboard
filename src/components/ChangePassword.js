@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const ChangePassword = () => {
+
+  useEffect(()=>{
+    const data = async() =>{
+    const response = await fetch(
+      "https://doctors-backend-ztcl.onrender.com/users",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const makeJson = await response.json()
+    }
+  data()
+  },[])
   return (
     <>
       <div className=' bg-white ml-10 p-1  shadow-lg shadow-gray-600 w-full rounded-lg flex flex-col'>
