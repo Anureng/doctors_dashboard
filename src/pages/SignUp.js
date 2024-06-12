@@ -1,8 +1,15 @@
 import React from 'react'
+import SignUpData from '../components/SignUpData'
+import NavBar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 const SignUp = () => {
   return (
-    <div>SignUp</div>
+  <>
+  <NavBar/>
+  <SignUpData/>
+  <Footer/>
+  </>
   )
 }
 
