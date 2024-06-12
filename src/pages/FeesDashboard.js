@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NavBar from '../components/Navbar';
 import Footer from '../components/Footer';
 import NavbarDashboard from '../components/NavbarDashboard';
@@ -7,6 +7,34 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import { MdAdd } from "react-icons/md";
 
 const FeesDashboard = () => {
+
+  const [specialities, setSpecialities] = useState("")
+  const [fees , setFees] = useState("")
+
+  const addLocation = async() =>{
+    try {
+    const data=   await fetch(
+        "https://doctors-backend-ztcl.onrender.com/updatesettings/660be57c3b9e529a2236f462",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ services:{"specialities":specialities} , fees:fees}),
+        }
+      );
+
+      if(data.ok){
+      alert("added successfully")
+      }
+      else{
+        alert("Try Again and reload the page")
+      }
+
+    } catch (error) {
+      alert("Try Again and reload the page")
+    }
+  }
   return (
     <div className='bg-[#0075691A] min-h-screen flex flex-col'>
       <NavBar />
@@ -29,7 +57,9 @@ const FeesDashboard = () => {
               <div className='flex  gap-4'>
                 <select
                   name='delete_reason'
-                  className='w-full  focus:no-underline p-2  outline-none text-lg text-[#505050] font-semibold rounded-md'>
+                  className='w-full  focus:no-underline p-2  outline-none text-lg text-[#505050] font-semibold rounded-md'
+                  onChange={(e)=>setSpecialities(e.target.value)}
+                  >
                   <option value=''>Specialities</option>
                   <option value='Dentist'>Dentist</option>
                   <option value='Neurologist'>Neurologist</option>
@@ -48,14 +78,14 @@ const FeesDashboard = () => {
 
 
             <div className='flex flex-col gap-2 bg-[#F7F7F7] p-3 rounded-lg'>
-              <h2 className='text-xl  font-semibold text-start'>Specialities</h2>
+              <h2 className='text-xl  font-semibold text-start'>Fees</h2>
               <div className='flex  gap-4 flex-row'>
-                <input className='w-full  focus:no-underline p-2  outline-none text-lg text-[#505050] font-semibold rounded-md' placeholder='consultation fee' type='text' />
+                <input value={fees} onChange={(e)=>setFees(e.target.value)} className='w-full  focus:no-underline p-2  outline-none text-lg text-[#505050] font-semibold rounded-md' placeholder='consultation fee' type='text' />
                 <button className='text-[#00C814] border-[3px] p-2 rounded-md  border-[#00C814] '>SAVE</button></div>
             </div>
 
             <div className='mb-4 mt-4 flex justify-center md:justify-end'>
-              <button className='text-white hover:bg-[#2f5854] bg-[#007569] py-2 px-4 rounded-md'>SAVE CHANGES</button>
+              <button className='text-white hover:bg-[#2f5854] bg-[#007569] py-2 px-4 rounded-md' onClick={addLocation}>SAVE CHANGES</button>
             </div>
           </div>
         </div>

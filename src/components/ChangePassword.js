@@ -14,6 +14,7 @@ const ChangePassword = () => {
       }
     );
     const makeJson = await response.json()
+    console.log(makeJson);
     }
   data()
   },[])
