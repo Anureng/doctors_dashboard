@@ -2,6 +2,32 @@ import React from 'react'
 
 
 const DeleteAccount = () => {
+
+
+  const handleDeleteAccount = async () => {
+    if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+      try {
+        const id = localStorage.getItem("userId");
+        const response = await fetch(`https://doctors-backend-ztcl.onrender.com/deleteuser/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          alert("Account Deleted");
+          localStorage.clear();
+          window.location.href = "/login";
+        } else {
+          alert("Something went wrong...please try again later");
+        }
+      } catch (error) {
+        console.error("Error during account deletion:", error);
+      }
+    }
+  }
+
   return (
     <>
       <div className='bg-white mx-auto md:ml-10 p-4 shadow-lg shadow-gray-600 w-full max-w-4xl rounded-lg flex flex-col'>
@@ -36,7 +62,7 @@ const DeleteAccount = () => {
 
         </div>
         <div className='mb-4 mt-4 flex justify-center md:justify-end'>
-          <button className='text-white hover:bg-[#2f5854] bg-[#007569] py-2 px-4 rounded-md'>SAVE CHANGES</button>
+          <button className='text-white hover:bg-[#2f5854] bg-[#007569] py-2 px-4 rounded-md' onClick={handleDeleteAccount}>SAVE CHANGES</button>
         </div>
       </div>
     </>

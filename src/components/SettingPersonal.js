@@ -1,22 +1,37 @@
-
-
-
+import {storage} from "../firebase.config";
+import {ref, uploadBytes, getDownloadURL} from "firebase/storage"
 import React from 'react'
 import { useState } from 'react';
 
 
 
 const SettingPersonal = () => {
-
-
-
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [Phoneno, setPhoneno] = useState("");
   const [gender, setGender] = useState("");
   const [bio, setBio] = useState("");
   const [language, setLanguage] = useState("")
-  // const [profilepic, setProfilepic] = useState("")
+  const [profilepic, setProfilepic] = useState("")
+
+
+  
+  const uploadimage = async(e) =>{
+    const id = localStorage.getItem("userId");
+    const imageRef1 = ref(storage,id);
+    if (e) {
+        uploadBytes(imageRef1, e).then(() => {
+            getDownloadURL(imageRef1).then((url) => {
+                setProfilepic(url);
+                alert("uploaded")
+            }).catch((error) => {
+                console.log(error.message, "error geting the image url");
+            })
+        }).catch((error) => {
+            console.log(error.message);
+        })
+    }
+  }
 
 
 
@@ -30,7 +45,7 @@ const SettingPersonal = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ gender: gender, language: language, bio: bio, Phoneno: Phoneno, firstname: firstname, lastname: lastname }),
+          body: JSON.stringify({ gender: gender, language: language, bio: bio, Phoneno: Phoneno, firstname: firstname, lastname: lastname,profilepic:profilepic }),
         }
       );
 
@@ -124,6 +139,13 @@ const SettingPersonal = () => {
                 // onChange={handleProfilePicChange}
                 className='hidden'
                 id='fileInput'
+                onChange={
+                  (e) => {
+                      if (e.target.files[0]) {
+                          uploadimage(e.target.files[0])
+                      }
+                  }
+                }
               />
               <div className='flex flex-row'>
                 <label
