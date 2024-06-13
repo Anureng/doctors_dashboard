@@ -15,7 +15,7 @@ const SettingLocation = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ edu:{"Gender":gender,"Location":location,"Address":address}}),
+          body: JSON.stringify({gender:gender, address:{"Location":location,"Address":address}}),
         }
       );
 
