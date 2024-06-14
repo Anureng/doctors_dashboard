@@ -35,7 +35,7 @@ function App() {
           
           <Route path="/fees" element={<FeesDashboard />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </div>
