@@ -1,39 +1,3 @@
-// import React from 'react'
-// import { MdEmail } from "react-icons/md";
-
-
-// const EmailNotification = () => {
-//   return (
-//     <>
-//       <div className=' bg-white md:ml-10 p-1  shadow-lg shadow-gray-600 w-full rounded-lg flex flex-col'>
-//         <div className='flex justify-between items-center p-2'>
-//           <h1 className='text-[28px]  font-semibold'>Email Notification</h1>
-//           <div className='text-sm  font-semibold'>DashBoard {">"} security <span className='text-[#007569]'>{'>'} Email Notification</span></div>
-//         </div>
-//         <div>
-//           <div className='w-[90%] mx-auto relative'>
-//             <div className='absolute inset-y-0 right-0 flex items-center pr-3'>
-//               <MdEmail className='text-gray-600' />
-//             </div>
-//             <input
-//               type='text'
-//               autoComplete='off'
-//               placeholder='drzeena@gmail.com'
-//               className='w-full p-2 pl-3 pr-10 mt-2 border-[2px] border-[#000000] rounded-md'
-//             />
-//           </div>
-
-//         </div>
-//         <div className=' mb-4 md:ml-[70%]   mt-2 md:items-end'><button className='text-white  hover:bg-[#2f5854]   bg-[#007569] py-1 px-2 text-center rounded-md'>SAVE CHANGES</button></div>
-//       </div>
-//     </>
-//   )
-// }
-
-// export default EmailNotification;
-
-
-
 
 import React from 'react'
 import { MdEmail } from "react-icons/md";
