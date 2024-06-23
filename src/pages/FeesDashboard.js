@@ -13,8 +13,9 @@ const FeesDashboard = () => {
 
   const addLocation = async() =>{
     try {
-    const data=   await fetch(
-        "https://doctors-backend-ztcl.onrender.com/updatesettings/660be57c3b9e529a2236f462",
+
+      const id = localStorage.getItem("userId");
+    const data=   await fetch(`https://doctors-backend-ztcl.onrender.com/updatesettings/${id}`,
         {
           method: "PATCH",
           headers: {

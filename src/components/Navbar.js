@@ -8,14 +8,13 @@ import SidePanel from './SidePanel';
 
 function NavBar() {
   const [open, setOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(window.innerWidth <= 1024);
   const getdata = localStorage.getItem("token");
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobileOrTablet(window.innerWidth <= 1024);
     };
-    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -23,7 +22,7 @@ function NavBar() {
   return (
     <div className={`p-4 ${open ? 'bg-white' : 'bg-transparent'}`}>
       <div className={`rounded-full flex flex-col md:flex-row items-center justify-between p-4 ${open ? 'bg-white text-black' : 'bg-[#007569] text-white'}`}>
-        <div className='flex justify-between items-center w-full md:w-auto'>
+        <div className='flex justify-between items-center w-full lg:w-auto'>
           <div className='font-bold lg:text-2xl'>
             <Link to="/" className='text-white'>Doctor +</Link>
           </div>
@@ -32,7 +31,7 @@ function NavBar() {
           </div>
         </div>
 
-        {isMobile && open ? (
+        {isMobileOrTablet && open ? (
           <SidePanel />
         ) : (
           <div className={`lg:flex space-x-8 ${open ? 'flex flex-col lg:flex-row w-full' : 'hidden lg:flex'} items-center`}>
@@ -49,7 +48,7 @@ function NavBar() {
             </div>
 
             {getdata ? (
-              <Link to="/profile" className={`mt-4 lg:mt-0 ${open ? 'bg-[#007569] w-full flex items-center justify-center text-white p-2 rounded-md' : ''}`}>
+              <Link to="/dashboard" className={`mt-4 lg:mt-0 ${open ? 'bg-[#007569] w-full flex items-center justify-center text-white p-2 rounded-md' : ''}`}>
                 <FaUser className='text-2xl cursor-pointer' />
               </Link>
             ) : (
@@ -62,7 +61,7 @@ function NavBar() {
           </div>
         )}
       </div>
-    </div>
+    </div> 
   );
 }
 

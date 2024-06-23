@@ -24,7 +24,7 @@ const SignUpData = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email, password ,location,firstname,lastname,startas}),
+          body: JSON.stringify({ email, password ,location,firstname,lastname,type:startas}),
         }
       );
 

@@ -26,13 +26,22 @@ const LoginData = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const { username, email } = data;
-        setUser({ username, email });
-        login();
-        localStorage.setItem("token", data.sessionToken);
-        localStorage.setItem("userId", data._id);
-        alert("Logged in successfully");
-        navigate("/");
+        console.log(data);
+        if(data.type === "doctor"){
+          const { username, email } = data;
+          setUser({ username, email });
+          login();
+          localStorage.setItem("token", data.sessionToken);
+          localStorage.setItem("userId", data._id);
+          alert("Logged in successfully");
+          navigate("/dashboard");
+        }
+        else{
+          localStorage.removeItem("token");
+          localStorage.removeItem("userId");
+          alert("Add Doctor email and Password")
+        }
+
       } else {
         alert("something went wrong...please check credential");
       }
