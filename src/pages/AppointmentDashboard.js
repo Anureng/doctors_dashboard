@@ -11,8 +11,8 @@ const AppointemtDashboard = () => {
     <NavBar />
     <NavbarDashboard />
 
-    <section className='flex flex-row flex-grow w-full p-4 border  justify-evenly mx-auto'>
-      <div className=' hidden md:inline-flex'>
+    <section className='flex flex-row flex-grow pt-10   w-[80%] justify-evenly mx-auto'>
+      <div className=' w-2/5 hidden md:inline-flex'>
         <SidePanel />
       </div>
       <div className='lg:w-3/5 w-full'>

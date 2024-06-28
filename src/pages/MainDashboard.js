@@ -6,6 +6,8 @@ import SidePanel from '../components/SidePanel';
 import { FaUserInjured } from "react-icons/fa";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import DoubleBarGraph from '../components/DoubleBarGraph';
+import { RiDashboardFill } from "react-icons/ri";
+
 
 const MainDashBoard = () => {
 
@@ -47,7 +49,7 @@ const MainDashBoard = () => {
         <div className='md:w-[35%] lg:w-[30%] hidden md:inline-flex'>
           <SidePanel />
         </div>
-        <div className='xl:w-[40%] w-full flex flex-col gap-20'>
+        <div className='lg:w-[60%] w-full  mx-auto flex flex-col gap-20'>
           <div className='flex flex-col md:flex-row justify-between  gap-3 w-full'>
             <div className='bg-[#FA7070] lg:p-5 p-3 md:p-1 rounded-lg'>
               <div className='flex gap-5'>
