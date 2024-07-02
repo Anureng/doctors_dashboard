@@ -46,7 +46,7 @@ const SettingPersonal = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ gender: gender, language: language, bio: bio, Phoneno: Phoneno, firstname: firstname, lastname: lastname,profilepic:profilepic }),
+          body: JSON.stringify({ gender: gender, language: language, Bio: bio, Phoneno: Phoneno, firstname: firstname, lastname: lastname,profilepic:profilepic }),
         }
       );
 
