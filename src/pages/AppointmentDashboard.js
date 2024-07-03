@@ -15,7 +15,7 @@ const AppointemtDashboard = () => {
       <div className=' w-2/5 hidden md:inline-flex'>
         <SidePanel />
       </div>
-      <div className='lg:w-3/5 w-full'>
+      <div className='lg:w-3/4 w-full'>
         <AllUser/>
       </div>
     </section>
