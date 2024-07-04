@@ -4,64 +4,70 @@ import { CiSearch } from "react-icons/ci";
 
 const AllUser = () => {
   const [filteredBookings, setFilteredBookings] = useState([]);
-  const [selectValue , setSelectValue] = useState("")
-
-
-  useEffect(()=>{
-    const fetchData = async() =>{
-     // const response = await axios.post('​https://doctors-backend-ztcl.onrender.com/getallbookings',{})
-     const data = await fetch("https://doctors-backend-ztcl.onrender.com/getallbookings",
-       {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-         },
-         body: JSON.stringify({ }),
-       }
-     );
-     const dataResponse = await data.json()
-
- 
-     const storedId = localStorage.getItem('userId');
-     if (storedId) {
-         // Filter bookings based on the doc key matching the stored ID
-         const matchedBookings = dataResponse.filter(el => el.doct === storedId);
-         setFilteredBookings(matchedBookings);
-     }
-    }
-    fetchData()
-   },[])
+  const [storeImage, setStoreImage] = useState({});
+  const [selectValue, setSelectValue] = useState("");
   const [search, setSearch] = useState("");
 
-  // const filterByData = users.filter(user =>
-  //   user.name.toLowerCase().includes(search.toLowerCase())
-  // );
-
-  const updateDataByStatus = async(datai) =>{
-    // const response = await axios.post('​https://doctors-backend-ztcl.onrender.com/getallbookings',{})
-
-    try {
-      const data = await fetch(`https://doctors-backend-ztcl.onrender.com/updateBooking/${datai}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ Status:selectValue}),
-        }
-      );
-      const dataResponse = await data.json()
-  
-      if(data.ok){
-        alert("Updated")
+  useEffect(() => {
+    const fetchBookings = async () => {
+      const response = await fetch("https://doctors-backend-ztcl.onrender.com/getallbookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      });
+      const dataResponse = await response.json();
+      const storedId = localStorage.getItem('userId');
+      if (storedId) {
+        const matchedBookings = dataResponse.filter(el => el.doct === storedId);
+        setFilteredBookings(matchedBookings);
       }
-      else{
-        alert("Try again")
+    };
+
+    const fetchUsers = async () => {
+      const response = await fetch("https://doctors-backend-ztcl.onrender.com/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      });
+      const dataResponse = await response.json();
+
+      const userImages = dataResponse.reduce((acc, user) => {
+        acc[user._id] = user.profilepic;
+        return acc;
+      }, {});
+
+      setStoreImage(userImages);
+    };
+
+    fetchBookings();
+    fetchUsers();
+  }, []);
+
+  const updateDataByStatus = async (datai) => {
+    try {
+      const response = await fetch(`https://doctors-backend-ztcl.onrender.com/updateBooking/${datai}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ Status: selectValue }),
+      });
+
+      const dataResponse = await response.json();
+
+      if (response.ok) {
+        alert("Updated");
+      } else {
+        alert("Try again");
       }
     } catch (error) {
       console.log(error);
     }
-   }
+  };
 
   return (
     <div className='bg-white w-full rounded-lg shadow-lg'>
@@ -102,30 +108,30 @@ const AllUser = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredBookings.map((user, index) => (
+            {filteredBookings.map((booking, index) => (
               <tr key={index} className="border-b">
                 <td className='flex items-center justify-center p-2'>
-                  <img src={user.profilepic} className='w-10 h-10 rounded-full' alt='Profile' />
+                  <img src={storeImage[booking.userid]} className='w-10 h-10 rounded-full' alt='Profile' />
                 </td>
-                <td className='p-2'>{user.name}</td>
-                <td className='p-2'>{user.time}</td>
-                <td className='p-2'>{user.date}</td>
-                <td className='p-2'>{user.Currentproblem}</td>
-                <td className='p-2'>{user.email}</td>
-                <td className='p-2'>{user.mob}</td>
-                <td className='p-2'>{user.Status}</td>
+                <td className='p-2'>{booking.name}</td>
+                <td className='p-2'>{booking.time}</td>
+                <td className='p-2'>{booking.date}</td>
+                <td className='p-2'>{booking.Currentproblem}</td>
+                <td className='p-2'>{booking.email}</td>
+                <td className='p-2'>{booking.mob}</td>
+                <td className='p-2'>{booking.Status}</td>
                 <td>
-                  <select onChange={(e)=>setSelectValue(e.target.value)}>
+                  <select onChange={(e) => setSelectValue(e.target.value)}>
                     <option value="Upcoming">Upcoming</option>
                     <option value="Completed">Completed</option>
                     <option value="Canceled">Canceled</option>
                   </select>
                 </td>
                 <td>
-                  <button onClick={()=>updateDataByStatus(user._id)} >
-                  Save
+                  <button onClick={() => updateDataByStatus(booking._id)}>
+                    Save
                   </button>
-                  </td>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -133,6 +139,6 @@ const AllUser = () => {
       </div>
     </div>
   );
-}
+};
 
 export default AllUser;
