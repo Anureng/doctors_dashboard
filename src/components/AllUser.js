@@ -115,20 +115,21 @@ const AllUser = () => {
                 </td>
                 <td className='p-2'>{booking.name}</td>
                 <td className='p-2'>{booking.time}</td>
-                <td className='p-2'>{booking.date}</td>
-                <td className='p-2'>{booking.Currentproblem}</td>
+                <td className='p-2'>{booking.date.substr(0, 10)}</td>
+                <td className='p-2'>{booking.Currentproblem ? booking.Currentproblem : 'not defined'}</td>
                 <td className='p-2'>{booking.email}</td>
                 <td className='p-2'>{booking.mob}</td>
                 <td className='p-2'>{booking.Status}</td>
                 <td>
                   <select onChange={(e) => setSelectValue(e.target.value)}>
+                    <option value="">Select Status</option>
                     <option value="Upcoming">Upcoming</option>
                     <option value="Completed">Completed</option>
-                    <option value="Canceled">Canceled</option>
+                    <option value="Cancelled">Cancelled</option>
                   </select>
                 </td>
                 <td>
-                  <button onClick={() => updateDataByStatus(booking._id)}>
+                  <button className='p-1 bg-[#007569] text-white rounded-md' onClick={() => updateDataByStatus(booking._id)}>
                     Save
                   </button>
                 </td>
